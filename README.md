@@ -1,73 +1,90 @@
-# React + TypeScript + Vite
+# KoinX Tax Loss Harvesting Tool
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A sophisticated, responsive React application built for crypto investors to simulate and optimize their tax liabilities through strategic tax-loss harvesting.
 
-Currently, two official plugins are available:
+![KoinX Logo](src/assets/koinx-logo.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🚀 Overview
 
-## React Compiler
+The **Tax Loss Harvesting (TLH)** tool helps users identify underperforming assets in their portfolio that, if sold, can offset realized capital gains. This project focuses on an impeccable user interface, real-time calculations, and a seamless data-driven experience.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## ✨ Key Features
 
-## Expanding the ESLint configuration
+- **Real-time Tax Simulation**: Interactively select holdings to see how "After Harvesting" values (Profits, Losses, Net Gains) update instantly.
+- **Advanced Holdings Table**:
+  - Multi-select capability with "Select All" and indeterminate states.
+  - Interactive sorting for Short-term and Long-term gains (Descending → Ascending → Reset).
+  - Collapsible data view ("View All" toggle).
+- **Impeccable UI/UX**:
+  - **Dark Mode First**: Optimized with a premium `#0A0A11` and `#171823` palette.
+  - **Typography**: Replaced bold fonts with **Google Sans Medium** for a sleek, high-end financial aesthetic.
+  - **Precision Alignment**: All financial data is aligned using fixed-width containers and tabular figures.
+- **Adaptive Design**: Fully responsive across mobile, tablet, and desktop viewports.
+- **Collapsible Disclaimers**: Integrated accordion for important regulatory notes and disclaimers.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🛠️ Tech Stack
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- **Framework**: [React 19](https://react.dev/)
+- **Build Tool**: [Vite 6](https://vite.dev/)
+- **Styling**: [Tailwind CSS 4](https://tailwindcss.com/) (using OKLCH colors & CSS-first configuration)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **Icons**: [Lucide React](https://lucide.dev/)
+- **Animation**: `tailwindcss-animate` & CSS Transitions
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 📦 Getting Started
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) (v18 or higher recommended)
+- [npm](https://www.npmjs.com/)
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/koinx-tax-harvesting.git
+   cd koinx-tax-harvesting
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+4. Build for production:
+   ```bash
+   npm run build
+   ```
+
+## 🏗️ Project Structure
+
+```text
+src/
+├── assets/         # static assets (KoinX logo, coin icons)
+├── components/     # Reusable UI components (Cards, Tables, Rows)
+├── context/        # React Context for state management
+├── hooks/          # Custom hooks (useHarvesting)
+├── lib/            # API mocks, types, and business logic
+├── utils/          # Formatter functions (INR, Coin balance)
+└── App.tsx         # Main entry point and layout
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 📝 Implementation Details
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- **State Management**: Uses React `useReducer` and `useContext` for robust, predictable state transitions.
+- **Performance**: High-performance rendering with `useMemo` for derived tax calculations and sorting operations.
+- **Typography Philosophy**: Prioritizes medium and light weights to maintain a distinctive, non-generic bold experience.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## ⚖️ Disclaimer
+
+Tax-loss harvesting regulations vary by country. This tool is a simulation and should not be considered financial or tax advice. Always consult with a qualified tax professional.
+
+---
+
+Built with ❤️ for the **KoinX Frontend Challenge**.
+
