@@ -5,7 +5,7 @@ import { useHarvesting } from "@/hooks/useHarvesting";
 import { HoldingRow } from "./HoldingRow";
 import { Checkbox } from "./Checkbox";
 import type { SelectAllState } from "@/lib/types";
-import { Sparkles, ArrowUpDown, Info } from "lucide-react";
+import { Sparkles, ArrowUpDown, Info, Keyboard } from "lucide-react";
 import { formatCoinBalance, formatINR, formatGain } from "@/utils/formatters";
 import { CoinLogo } from "./CoinLogo";
 import { useState, useMemo, useEffect, useCallback } from "react";
@@ -136,29 +136,29 @@ export const HoldingsTable: React.FC = () => {
     <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 mb-20">
       <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
         <div className="flex items-center gap-4">
-          <h2 className="text-2xl font-bold tracking-tight text-[#0F1629] dark:text-white">Holdings</h2>
+          <h2 className="text-2xl font-semibold tracking-tight text-black dark:text-white">Holdings</h2>
         </div>
 
         <div className="flex flex-col items-end gap-2">
           <button
             onClick={handleSelectRecommended}
-            className="flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-500 text-white px-5 py-2.5 rounded-xl font-medium transition-all shadow-lg shadow-blue-500/20 active:scale-95 group cursor-pointer"
+            className="flex items-center justify-center gap-2 bg-[#0052FE] hover:bg-[#0042CC] text-white px-5 py-2.5 rounded-xl font-medium transition-all shadow-lg shadow-blue-500/20 active:scale-95 group cursor-pointer"
           >
             <Sparkles className="w-4 h-4 group-hover:rotate-12 transition-transform" />
             Select recommended
           </button>
-          <div className="flex items-center gap-1.5 text-[10px] font-bold text-blue-500 uppercase tracking-widest bg-blue-500/5 px-3 py-1 rounded-full border border-blue-500/10">
-            <Info className="w-3 h-3" />
-            Speciality: Auto-selects all assets with harvestable losses to maximize tax savings instantly.
+          <div className="flex items-center gap-1.5 text-[10px] font-semibold text-blue-600 dark:text-blue-400 uppercase tracking-widest bg-blue-500/5 px-3 py-1 rounded-full border border-blue-500/20 dark:border-blue-500/10">
+            <Info className="w-3 h-3 opacity-80" />
+            <span className="opacity-80">Auto-selects all assets with harvestable losses to maximize tax savings instantly.</span>
           </div>
         </div>
       </div>
 
-      <div className="hidden md:block bg-card-bg dark:bg-card-bg border border-card-border rounded-2xl overflow-hidden shadow-sm transition-colors">
+      <div className="hidden md:block bg-white dark:bg-[#111827] border border-card-border rounded-2xl overflow-hidden shadow-sm transition-colors">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-separate border-spacing-0">
             <thead>
-              <tr className="bg-[#F8FAFC] dark:bg-white/[0.02] border-b border-card-border">
+              <tr className="bg-[#F8FAFC] dark:bg-white/[0.02]">
                 <th className="py-5 px-4 pl-8 w-14 border-b border-card-border">
                   <Checkbox
                     checked={selectAllState === "all"}
@@ -167,20 +167,20 @@ export const HoldingsTable: React.FC = () => {
                     ariaLabel="Select all holdings"
                   />
                 </th>
-                <th className="py-5 px-4 text-xs font-bold text-[#3E4D6E] dark:text-muted-foreground uppercase tracking-widest select-none border-b border-card-border">
+                <th className="py-5 px-4 text-xs font-bold text-black dark:text-white/40 uppercase tracking-widest select-none border-b border-card-border">
                   Asset
                 </th>
-                <th className="py-5 px-4 text-xs font-bold text-[#3E4D6E] dark:text-muted-foreground uppercase tracking-widest hidden md:table-cell select-none border-b border-card-border">
+                <th className="py-5 px-4 text-xs font-bold text-black dark:text-white/40 uppercase tracking-widest hidden md:table-cell select-none border-b border-card-border">
                   <div className="flex flex-col">
                     <span>Holdings</span>
-                    <span className="text-[9px] lowercase font-medium opacity-60">Current Market Rate</span>
+                    <span className="text-[9px] lowercase font-semibold opacity-60">Current Market Rate</span>
                   </div>
                 </th>
-                <th className="py-5 px-4 text-xs font-bold text-[#3E4D6E] dark:text-muted-foreground uppercase tracking-widest hidden lg:table-cell select-none border-b border-card-border text-center">
+                <th className="py-5 px-4 text-xs font-bold text-black dark:text-white/40 uppercase tracking-widest hidden lg:table-cell select-none border-b border-card-border text-center">
                   Total Current Value
                 </th>
                 <th
-                  className="py-5 px-4 text-xs font-bold text-[#3E4D6E] dark:text-muted-foreground uppercase tracking-widest cursor-pointer select-none hover:text-foreground transition-colors group border-b border-card-border"
+                  className="py-5 px-4 text-xs font-bold text-black dark:text-white/40 uppercase tracking-widest cursor-pointer select-none hover:text-[#0052FE] dark:hover:text-white transition-colors group border-b border-card-border"
                   onClick={() => handleSort("stcg")}
                 >
                   <div className="flex items-center gap-2">
@@ -188,14 +188,14 @@ export const HoldingsTable: React.FC = () => {
                   </div>
                 </th>
                 <th
-                  className="py-5 px-4 text-xs font-bold text-[#3E4D6E] dark:text-muted-foreground uppercase tracking-widest cursor-pointer select-none hover:text-foreground transition-colors group border-b border-card-border"
+                  className="py-5 px-4 text-xs font-bold text-black dark:text-white/40 uppercase tracking-widest cursor-pointer select-none hover:text-[#0052FE] dark:hover:text-white transition-colors group border-b border-card-border"
                   onClick={() => handleSort("ltcg")}
                 >
                   <div className="flex items-center gap-2">
                     Long-term {getSortIcon("ltcg")}
                   </div>
                 </th>
-                <th className="py-5 px-4 pr-8 text-right text-xs font-bold text-[#3E4D6E] dark:text-muted-foreground uppercase tracking-widest select-none border-b border-card-border">
+                <th className="py-5 px-4 pr-8 text-right text-xs font-bold text-black dark:text-white/40 uppercase tracking-widest select-none border-b border-card-border">
                   Amount to Sell
                 </th>
               </tr>
@@ -229,7 +229,7 @@ export const HoldingsTable: React.FC = () => {
             <div
               key={id}
               onClick={() => handleToggle(id, index)}
-              className={`bg-card-bg border border-card-border rounded-2xl p-5 transition-all active:scale-[0.98] cursor-pointer ${
+              className={`bg-white dark:bg-[#111827] border border-card-border rounded-2xl p-5 transition-all active:scale-[0.98] cursor-pointer ${
                 isSelected
                   ? "ring-2 ring-blue-500 ring-offset-2 ring-offset-background"
                   : ""
@@ -239,10 +239,10 @@ export const HoldingsTable: React.FC = () => {
                 <div className="flex items-center gap-3">
                   <CoinLogo src={holding.logo} coin={holding.coin} size={32} />
                   <div className="flex flex-col">
-                    <span className="font-bold text-base tracking-tight text-[#0F1629] dark:text-white">
+                    <span className="font-semibold text-base tracking-tight text-black dark:text-white">
                       {holding.coinName}
                     </span>
-                    <span className="text-xs font-bold text-muted-foreground uppercase tracking-widest">
+                    <span className="text-xs font-semibold text-black dark:text-white/40 uppercase tracking-widest">
                       {holding.coin}
                     </span>
                   </div>
@@ -256,40 +256,40 @@ export const HoldingsTable: React.FC = () => {
 
               <div className="grid grid-cols-2 gap-4 border-t border-card-border pt-4">
                 <div>
-                  <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest mb-1">
+                  <p className="text-[10px] font-semibold text-black dark:text-white/40 uppercase tracking-widest mb-1">
                     Holdings
                   </p>
-                  <p className="text-sm font-semibold tabular text-[#0F1629] dark:text-white">
+                  <p className="text-sm font-semibold tabular text-black dark:text-white">
                     {formatCoinBalance(holding.totalHolding)} {holding.coin}
                   </p>
                 </div>
                 <div>
-                  <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest mb-1">
+                  <p className="text-[10px] font-semibold text-black dark:text-white/40 uppercase tracking-widest mb-1">
                     Current Value
                   </p>
-                  <p className="text-sm font-semibold tabular text-[#0F1629] dark:text-white">
+                  <p className="text-sm font-semibold tabular text-black dark:text-white">
                     {formatINR(holding.totalHolding * holding.currentPrice)}
                   </p>
                 </div>
                 <div>
-                  <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest mb-1">
+                  <p className="text-[10px] font-semibold text-black dark:text-white/40 uppercase tracking-widest mb-1">
                     STCG
                   </p>
                   <p
                     className={`text-sm font-semibold tabular ${
-                      holding.stcg.gain > 0 ? "text-green-500" : "text-red-500"
+                      holding.stcg.gain > 0 ? "text-green-600 dark:text-green-500" : "text-red-600 dark:text-red-500"
                     }`}
                   >
                     {formatGain(holding.stcg.gain)}
                   </p>
                 </div>
                 <div>
-                  <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest mb-1">
+                  <p className="text-[10px] font-semibold text-black dark:text-white/40 uppercase tracking-widest mb-1">
                     LTCG
                   </p>
                   <p
                     className={`text-sm font-semibold tabular ${
-                      holding.ltcg.gain > 0 ? "text-green-500" : "text-red-500"
+                      holding.ltcg.gain > 0 ? "text-green-600 dark:text-green-500" : "text-red-600 dark:text-red-500"
                     }`}
                   >
                     {formatGain(holding.ltcg.gain)}
@@ -298,7 +298,7 @@ export const HoldingsTable: React.FC = () => {
               </div>
 
               {potentialSavings > 0 && !isSelected && (
-                <div className="mt-4 bg-green-500/10 text-green-500 px-3 py-2 rounded-lg border border-green-500/20 text-[10px] font-bold uppercase tracking-widest text-center">
+                <div className="mt-4 bg-green-500/10 text-green-600 dark:text-green-400 px-3 py-2 rounded-lg border border-green-500/20 text-[10px] font-semibold uppercase tracking-widest text-center">
                   Saves {formatINR(potentialSavings)}
                 </div>
               )}
@@ -307,13 +307,23 @@ export const HoldingsTable: React.FC = () => {
         })}
       </div>
 
-      <div className="mt-8 flex justify-between items-center">
+      <div className="mt-10 flex flex-col items-center gap-10">
         <button
           onClick={() => dispatch({ type: "TOGGLE_SHOW_ALL" })}
-          className="text-sm font-semibold text-blue-600 hover:text-blue-500 transition-colors bg-transparent px-2 py-1 cursor-pointer"
+          className="text-sm font-semibold text-blue-600 hover:text-blue-500 transition-colors bg-white dark:bg-[#111827] border border-blue-500/20 dark:border-white/10 px-8 py-2.5 rounded-xl cursor-pointer shadow-sm hover:shadow-md active:scale-95 transition-all"
         >
           {showAll ? "View less" : "View all"}
         </button>
+
+        <div className="w-full flex flex-col items-center gap-3 py-6 border-t border-card-border">
+          <div className="flex items-center gap-2 px-4 py-1.5 bg-[#F8FAFC] dark:bg-white/[0.03] rounded-full border border-card-border shadow-sm">
+             <Keyboard className="w-4 h-4 text-blue-500" />
+             <span className="text-[10px] font-semibold text-black dark:text-white uppercase tracking-widest">Keyboard Navigation</span>
+          </div>
+          <p className="text-xs font-semibold text-black dark:text-white tracking-tight text-center max-w-lg leading-relaxed">
+            Full support for <span className="text-[#0052FE] font-bold">Arrow keys</span> to navigate, <span className="text-[#0052FE] font-bold">Space</span> to toggle, and <span className="text-[#0052FE] font-bold">Shift+Click</span> for range selection is still active.
+          </p>
+        </div>
       </div>
     </section>
   );

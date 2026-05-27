@@ -1,9 +1,10 @@
 "use client";
 
-import React from 'react';
-import type { StcgLtcg } from '@/lib/types';
-import { formatINR } from '@/utils/formatters';
-import { CapitalGainsRow } from './CapitalGainsRow';
+import React from "react";
+import type { StcgLtcg } from "@/lib/types";
+import { formatINR } from "@/utils/formatters";
+import { CapitalGainsRow } from "./CapitalGainsRow";
+import { useTheme } from "@/context/ThemeContext";
 
 interface PreHarvestingCardProps {
   stcg: StcgLtcg;
@@ -11,38 +12,47 @@ interface PreHarvestingCardProps {
 }
 
 export const PreHarvestingCard: React.FC<PreHarvestingCardProps> = ({ stcg, ltcg }) => {
+  const { theme } = useTheme();
+  const isLight = theme === "light";
+  
   const netStcg = stcg.profits - stcg.losses;
   const netLtcg = ltcg.profits - ltcg.losses;
   const totalRealised = netStcg + netLtcg;
 
   return (
-    <div className="bg-white dark:bg-card-bg border border-card-border rounded-xl p-8 flex flex-col h-full shadow-sm transition-colors group">
-      <div className="flex justify-between items-start mb-10">
-        <h3 className="text-xl font-bold tracking-tight text-[#0F1629] dark:text-white">Pre Harvesting</h3>
+    <div className="bg-white dark:bg-[#111827] rounded-2xl p-8 flex flex-col h-full shadow-sm border border-[#E5E7EB] dark:border-white/5 transition-colors">
+      <div className="flex justify-between items-start mb-8">
+        <div className="flex flex-col">
+          <h3 className="text-[#0052FE] dark:text-blue-400 uppercase tracking-widest text-[11px] font-bold">Baseline</h3>
+          <h3 className="text-2xl font-bold tracking-tight text-black dark:text-white mt-1">Pre-Harvesting</h3>
+        </div>
       </div>
       
-      <div className="flex justify-end gap-12 sm:gap-16 mb-6">
+      <div className="flex justify-end gap-12 sm:gap-16 mb-4">
         <div className="w-[100px] text-right">
-          <span className="text-[10px] font-bold text-[#3E4D6E] dark:text-muted-foreground uppercase tracking-widest">Short-term</span>
+          <span className="text-[11px] font-bold text-black/40 dark:text-white/40 uppercase tracking-widest">Short-term</span>
         </div>
         <div className="w-[100px] text-right">
-          <span className="text-[10px] font-bold text-[#3E4D6E] dark:text-muted-foreground uppercase tracking-widest">Long-term</span>
+          <span className="text-[11px] font-bold text-black/40 dark:text-white/40 uppercase tracking-widest">Long-term</span>
         </div>
       </div>
 
       <div className="space-y-4 flex-grow">
-        <CapitalGainsRow label="Profits" shortTerm={stcg.profits} longTerm={ltcg.profits} />
-        <CapitalGainsRow label="Losses" shortTerm={stcg.losses} longTerm={ltcg.losses} negative />
-        <div className="mt-4 pt-4 border-t border-card-border">
-          <CapitalGainsRow label="Net Capital Gains" shortTerm={netStcg} longTerm={netLtcg} bold />
+        <CapitalGainsRow label="Profits" shortTerm={stcg.profits} longTerm={ltcg.profits} lightTheme={isLight} />
+        <CapitalGainsRow label="Losses" shortTerm={stcg.losses} longTerm={ltcg.losses} negative lightTheme={isLight} />
+        <div className="mt-4 pt-4 border-t border-[#E5E7EB] dark:border-white/10">
+          <CapitalGainsRow label="Net Capital Gains" shortTerm={netStcg} longTerm={netLtcg} bold lightTheme={isLight} />
         </div>
       </div>
 
-      <div className="mt-12 pt-10 border-t border-card-border flex items-baseline justify-between">
-        <span className="text-base font-bold text-[#0F1629] dark:text-white">Realised Capital Gains:</span>
-        <span className="text-3xl font-bold tabular text-[#0F1629] dark:text-white ml-4">
-          {formatINR(totalRealised)}
-        </span>
+      <div className="mt-10 pt-8 border-t border-[#E5E7EB] dark:border-white/10 flex flex-col gap-2">
+        <div className="flex justify-between items-center">
+          <span className="text-base font-bold text-black dark:text-white/60">Realised Capital Gains:</span>
+          <span className="text-3xl font-bold tabular text-black dark:text-white ml-4">
+            {formatINR(totalRealised)}
+          </span>
+        </div>
+        <div className="h-[44px]" /> 
       </div>
     </div>
   );

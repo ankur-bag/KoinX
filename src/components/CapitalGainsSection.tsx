@@ -11,7 +11,7 @@ export const CapitalGainsSection: React.FC = () => {
 
   if (!capitalGains) return null;
 
-  // Derived values â€” recompute on every render
+  // Derived values — recompute on every render
   const afterHarvesting = (() => {
     let stcgProfits = capitalGains.stcg.profits;
     let stcgLosses = capitalGains.stcg.losses;
@@ -56,14 +56,18 @@ export const CapitalGainsSection: React.FC = () => {
   return (
     <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 mb-10">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-        <PreHarvestingCard stcg={capitalGains.stcg} ltcg={capitalGains.ltcg} />
-        <AfterHarvestingCard 
-          stcg={afterHarvesting.stcg} 
-          ltcg={afterHarvesting.ltcg} 
-          savings={savings}
-          stcgSavings={stcgReduction}
-          ltcgSavings={ltcgReduction}
-        />
+        <div className="flex flex-col gap-2">
+           <PreHarvestingCard stcg={capitalGains.stcg} ltcg={capitalGains.ltcg} />
+        </div>
+        <div className="flex flex-col gap-2">
+            <AfterHarvestingCard 
+            stcg={afterHarvesting.stcg} 
+            ltcg={afterHarvesting.ltcg} 
+            savings={savings}
+            stcgSavings={stcgReduction}
+            ltcgSavings={ltcgReduction}
+            />
+        </div>
       </div>
     </section>
   );

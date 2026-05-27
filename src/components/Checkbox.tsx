@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useEffect, useRef } from 'react';
+import React from "react";
+import { Check, Dot } from "lucide-react";
 
 interface CheckboxProps {
   checked: boolean;
@@ -9,46 +10,30 @@ interface CheckboxProps {
   ariaLabel: string;
 }
 
-export const Checkbox: React.FC<CheckboxProps> = ({ 
-  checked, 
-  indeterminate, 
-  onChange, 
-  ariaLabel 
+export const Checkbox: React.FC<CheckboxProps> = ({
+  checked,
+  indeterminate = false,
+  onChange,
+  ariaLabel,
 }) => {
-  const ref = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    if (ref.current) {
-      ref.current.indeterminate = !!indeterminate;
-    }
-  }, [indeterminate]);
-
   return (
-    <div className="relative flex items-center justify-center w-5 h-5 group">
-      <input
-        ref={ref}
-        type="checkbox"
-        checked={checked}
-        onChange={(e) => {
-          onChange();
-        }}
-        aria-label={ariaLabel}
-        className="peer absolute inset-0 opacity-0 cursor-pointer z-10"
-      />
-      <div className={`w-5 h-5 rounded-md border transition-all duration-200 flex items-center justify-center 
-        ${checked || indeterminate 
-          ? 'bg-[#3B82F6] border-[#3B82F6] shadow-[0_0_10px_rgba(59,130,246,0.3)]' 
-          : 'bg-white/5 border-white/10 group-hover:border-white/20'}`}
-      >
-        {checked && (
-          <svg className="w-3.5 h-3.5 text-white animate-in zoom-in-50 duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="4">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-          </svg>
-        )}
-        {indeterminate && (
-          <div className="w-2.5 h-0.5 bg-white rounded-full animate-in zoom-in-50 duration-200" />
-        )}
-      </div>
-    </div>
+    <button
+      role="checkbox"
+      aria-checked={indeterminate ? "mixed" : checked}
+      aria-label={ariaLabel}
+      onClick={onChange}
+      className={`
+        w-[18px] h-[18px] rounded-md flex items-center justify-center transition-all cursor-pointer
+        ${
+          checked || indeterminate
+            ? "bg-[#0052FE] border-[#0052FE]"
+            : "bg-white dark:bg-transparent border-[#E5E7EB] dark:border-white/20 hover:border-[#0052FE] dark:hover:border-blue-500/50"
+        }
+        border-2
+      `}
+    >
+      {checked && !indeterminate && <Check className="w-3.5 h-3.5 text-white stroke-[3.5]" />}
+      {indeterminate && <Dot className="w-4 h-4 text-white stroke-[4]" />}
+    </button>
   );
 };

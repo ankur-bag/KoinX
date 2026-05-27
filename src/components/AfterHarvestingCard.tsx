@@ -40,33 +40,35 @@ export const AfterHarvestingCard: React.FC<AfterHarvestingCardProps> = ({
   }, [savings, hasCelebrated, dispatch]);
 
   return (
-    <div className="bg-[#0052FE] rounded-xl p-8 flex flex-col h-full shadow-lg relative overflow-hidden group border border-[#0052FE]">
-      <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent pointer-events-none" />
+    <div className="bg-[#0052FE] rounded-2xl p-8 flex flex-col h-full shadow-lg relative overflow-hidden group border border-[#0052FE] transition-colors">
+      <div className="absolute inset-0 bg-gradient-to-br from-white/15 to-transparent pointer-events-none" />
       
-      <div className="flex justify-between items-start mb-10 relative z-10">
-        <h3 className="text-xl font-bold tracking-tight text-white uppercase tracking-widest text-xs opacity-60">Result</h3>
-        <h3 className="text-xl font-bold tracking-tight text-white mb-2">After Harvesting</h3>
+      <div className="flex justify-between items-start mb-8 relative z-10">
+        <div className="flex flex-col">
+          <h3 className="text-white uppercase tracking-widest text-[11px] font-bold opacity-80">Result</h3>
+          <h3 className="text-2xl font-bold tracking-tight text-white mt-1">After Harvesting</h3>
+        </div>
       </div>
       
-      <div className="flex justify-end gap-12 sm:gap-16 mb-6 relative z-10">
+      <div className="flex justify-end gap-12 sm:gap-16 mb-4 relative z-10">
         <div className="w-[100px] text-right">
-          <span className="text-[10px] font-bold text-white/50 uppercase tracking-widest">Short-term</span>
+          <span className="text-[11px] font-bold text-white uppercase tracking-widest opacity-80">Short-term</span>
         </div>
         <div className="w-[100px] text-right">
-          <span className="text-[10px] font-bold text-white/50 uppercase tracking-widest">Long-term</span>
+          <span className="text-[11px] font-bold text-white uppercase tracking-widest opacity-80">Long-term</span>
         </div>
       </div>
 
       <div className="space-y-4 flex-grow relative z-10 text-white">
-        <CapitalGainsRow label="Profits" shortTerm={stcg.profits} longTerm={ltcg.profits} />
-        <CapitalGainsRow label="Losses" shortTerm={stcg.losses} longTerm={ltcg.losses} negative />
+        <CapitalGainsRow label="Profits" shortTerm={stcg.profits} longTerm={ltcg.profits} lightTheme={false} />
+        <CapitalGainsRow label="Losses" shortTerm={stcg.losses} longTerm={ltcg.losses} negative lightTheme={false} />
         <div className="mt-4 pt-4 border-t border-white/20">
-          <CapitalGainsRow label="Net Capital Gains" shortTerm={netStcg} longTerm={netLtcg} bold />
+          <CapitalGainsRow label="Net Capital Gains" shortTerm={netStcg} longTerm={netLtcg} bold lightTheme={false} />
         </div>
       </div>
 
-      <div className="mt-12 pt-10 border-t border-white/20 flex flex-col gap-4 relative z-10">
-        <div className="flex justify-between items-baseline">
+      <div className="mt-10 pt-8 border-t border-white/20 flex flex-col gap-2 relative z-10">
+        <div className="flex justify-between items-center">
           <span className="text-base font-bold text-white">Effective Capital Gains:</span>
           <span className="text-3xl font-bold tabular text-white ml-4">
             {formatINR(totalEffective)}
@@ -74,11 +76,33 @@ export const AfterHarvestingCard: React.FC<AfterHarvestingCardProps> = ({
         </div>
         
         {savings > 0 && (
-          <div className="flex items-center gap-2 mt-2 bg-white/10 py-2 px-4 rounded-lg w-fit">
-            <span className="text-lg">??</span>
+          <div className="relative group/tooltip flex items-center gap-2 mt-4 bg-white/15 py-3 px-5 rounded-xl w-fit cursor-help border border-white/10 shadow-lg active:scale-95 transition-all">
+            <span className="text-lg">🔥</span>
             <span className="text-sm font-bold text-white truncate">
-              You are going to save upto <span className="text-white">{formatINR(savings)}</span>
+              You are going to save upto <span className="text-white font-black">{formatINR(savings)}</span>
             </span>
+
+            {/* Tooltip Breakdown */}
+            <div className="absolute bottom-full left-0 mb-4 opacity-0 group-hover/tooltip:opacity-100 transition-all pointer-events-none z-50 translate-y-2 group-hover/tooltip:translate-y-0">
+              <div className="bg-[#0A0A11] border border-white/10 p-5 rounded-2xl shadow-2xl min-w-[220px]">
+                <p className="text-[10px] font-bold text-white/40 uppercase tracking-widest mb-4 border-b border-white/5 pb-2">Savings Breakdown</p>
+                <div className="space-y-3">
+                  <div className="flex justify-between gap-8">
+                    <span className="text-xs text-white/70 font-semibold">STCG Offset</span>
+                    <span className="text-xs font-bold text-green-400">{formatINR(stcgSavings)}</span>
+                  </div>
+                  <div className="flex justify-between gap-8">
+                    <span className="text-xs text-white/70 font-semibold">LTCG Offset</span>
+                    <span className="text-xs font-bold text-green-400">{formatINR(ltcgSavings)}</span>
+                  </div>
+                </div>
+                <div className="mt-4 pt-3 border-t border-white/10 flex justify-between gap-8">
+                  <span className="text-xs font-bold text-white">Total Savings</span>
+                  <span className="text-xs font-extrabold text-white">{formatINR(savings)}</span>
+                </div>
+              </div>
+              <div className="w-3 h-3 bg-[#0A0A11] border-r border-b border-white/10 rotate-45 ml-6 -mt-1.5" />
+            </div>
           </div>
         )}
       </div>
