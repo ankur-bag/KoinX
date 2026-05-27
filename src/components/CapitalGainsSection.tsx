@@ -47,6 +47,9 @@ export const CapitalGainsSection: React.FC = () => {
   const preRealised = realisedGains(capitalGains.stcg, capitalGains.ltcg);
   const postRealised = realisedGains(afterHarvesting.stcg, afterHarvesting.ltcg);
   
+  const stcgReduction = (capitalGains.stcg.profits - capitalGains.stcg.losses) - (afterHarvesting.stcg.profits - afterHarvesting.stcg.losses);
+  const ltcgReduction = (capitalGains.ltcg.profits - capitalGains.ltcg.losses) - (afterHarvesting.ltcg.profits - afterHarvesting.ltcg.losses);
+
   const showSavings = preRealised > postRealised;
   const savings = showSavings ? preRealised - postRealised : 0;
 
@@ -57,7 +60,9 @@ export const CapitalGainsSection: React.FC = () => {
         <AfterHarvestingCard 
           stcg={afterHarvesting.stcg} 
           ltcg={afterHarvesting.ltcg} 
-          savings={savings} 
+          savings={savings}
+          stcgSavings={stcgReduction}
+          ltcgSavings={ltcgReduction}
         />
       </div>
     </section>

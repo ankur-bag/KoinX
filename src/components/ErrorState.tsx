@@ -18,7 +18,7 @@ export const ErrorState: React.FC<ErrorStateProps> = ({ message, onRetry }) => {
       <p className="text-muted-foreground mb-8 max-w-md">{message}</p>
       <button 
         onClick={onRetry}
-        className="flex items-center gap-2 bg-after-card hover:bg-blue-600 font-medium py-3 px-8 rounded-xl transition-all shadow-lg active:scale-95"
+        className="flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-medium py-3 px-8 rounded-xl transition-all shadow-lg active:scale-95 cursor-pointer"
       >
         <RefreshCcw className="w-4 h-4" />
         Retry

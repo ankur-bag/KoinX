@@ -43,9 +43,9 @@ const MainContent: React.FC = () => {
 
   if (isLoadingGains || isLoadingHoldings) {
     return (
-      <main className="min-h-screen bg-[#0A0A11]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
-           <h1 className="text-3xl font-medium tracking-tight">Tax Harvesting</h1>
+      <main className="min-h-screen bg-background pt-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+           <h1 className="text-3xl font-bold tracking-tight text-[#0F1629] dark:text-white">Tax Harvesting</h1>
         </div>
         <SkeletonLoader />
       </main>
@@ -53,11 +53,11 @@ const MainContent: React.FC = () => {
   }
 
   return (
-    <main className="min-h-screen pb-20 bg-[#0A0A11]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
-        <div className="flex items-center gap-2">
-          <h1 className="text-3xl font-medium tracking-tight">Tax Harvesting</h1>
-          <a href="#" className="text-sm font-medium text-[#3B82F6] hover:text-[#60A5FA] transition-colors underline underline-offset-4 decoration-white/20">How it works?</a>
+    <main className="min-h-screen pb-20 bg-background transition-colors">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10">
+        <div className="flex items-baseline gap-3">
+          <h1 className="text-3xl font-bold tracking-tight text-[#0F1629] dark:text-white">Tax Harvesting</h1>
+          <a href="#" className="text-sm font-semibold text-blue-600 hover:text-blue-500 transition-all underline underline-offset-4 decoration-blue-600/30">How it works?</a>
         </div>
       </div>
 
@@ -71,7 +71,7 @@ const MainContent: React.FC = () => {
 function App() {
   return (
     <HarvestingProvider>
-      <div className="antialiased text-white selection:bg-blue-500/30 selection:text-white">
+      <div className="antialiased selection:bg-blue-500/30">
         <Header />
         <MainContent />
       </div>

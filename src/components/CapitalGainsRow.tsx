@@ -18,18 +18,22 @@ export const CapitalGainsRow: React.FC<CapitalGainsRowProps> = ({
   bold = false,
   negative = false
 }) => {
+  const formatValue = (val: number) => {
+    return `${negative && val > 0 ? '-' : ''}${formatINR(Math.abs(val))}`;
+  };
+
   return (
-    <div className={`flex justify-between items-center py-3 transition-colors`}>
-      <span className={`text-base tracking-tight ${bold ? 'text-white' : 'text-white/60'}`}>{label}</span>
-      <div className="flex gap-4 sm:gap-6">
-        <div className="w-[120px] sm:w-[160px] text-right">
-          <span className={`text-base tabular font-medium ${negative && shortTerm !== 0 ? 'text-red-400' : ''}`}>
-            {negative && shortTerm > 0 ? '-' : ''}{formatINR(Math.abs(shortTerm))}
+    <div className="flex justify-between items-center py-1 transition-colors">
+      <span className={`text-sm tracking-tight ${bold ? 'font-semibold opacity-100' : 'font-medium opacity-60'}`}>{label}</span>
+      <div className="flex gap-12 sm:gap-16">
+        <div className="w-[100px] text-right">
+          <span className={`text-sm tabular font-semibold ${negative && shortTerm !== 0 ? 'text-red-500' : ''}`}>
+            {formatValue(shortTerm)}
           </span>
         </div>
-        <div className="w-[120px] sm:w-[160px] text-right">
-          <span className={`text-base tabular font-medium ${negative && longTerm !== 0 ? 'text-red-400' : ''}`}>
-            {negative && longTerm > 0 ? '-' : ''}{formatINR(Math.abs(longTerm))}
+        <div className="w-[100px] text-right">
+          <span className={`text-sm tabular font-semibold ${negative && longTerm !== 0 ? 'text-red-500' : ''}`}>
+            {formatValue(longTerm)}
           </span>
         </div>
       </div>

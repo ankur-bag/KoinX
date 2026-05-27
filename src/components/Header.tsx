@@ -1,25 +1,38 @@
 "use client";
 
-import React from 'react';
-import { Menu } from 'lucide-react';
-import koinxLogo from '@/assets/koinx-logo.png';
+import React from "react";
+import { useTheme } from "@/context/ThemeContext";
+import { Sun, Moon } from "lucide-react";
+import koinxLogo from "@/assets/koinx-logo.png";
 
 export const Header: React.FC = () => {
-  return (
-    <header className="w-full border-b border-white/5 bg-[#0A0A11] sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between">
-        <div className="flex items-center">
-          <img 
-            src={koinxLogo} 
-            alt="KoinX Logo" 
-            className="h-8 w-auto"
-          />
-        </div>
-        
-        <div className="md:hidden">
-          <Menu className="w-6 h-6 text-white/70" />
-        </div>
-      </div>
-    </header>
-  );
+    const { theme, toggleTheme } = useTheme();
+
+    return (
+        <header className="w-full border-b border-card-border bg-background/80 backdrop-blur-xl sticky top-0 z-50 transition-colors">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                    <img 
+                        src={koinxLogo} 
+                        alt="KoinX Logo" 
+                        className="h-6 w-auto object-contain"
+                    />
+                </div>
+
+                <div className="flex items-center gap-4">
+                    <button
+                        onClick={toggleTheme}
+                        className="p-3 hover:bg-foreground/5 rounded-xl transition-all active:scale-95 border border-transparent hover:border-card-border group cursor-pointer"
+                        aria-label="Toggle theme"
+                    >
+                        {theme === "dark" ? (
+                            <Sun className="w-5 h-5 text-foreground group-hover:rotate-45 transition-transform" />
+                        ) : (
+                            <Moon className="w-5 h-5 text-foreground group-hover:-rotate-12 transition-transform" />
+                        )}
+                    </button>
+                </div>
+            </div>
+        </header>
+    );
 };

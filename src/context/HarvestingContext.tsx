@@ -11,6 +11,7 @@ interface HarvestingState {
   isLoadingHoldings: boolean;
   error: string | null;
   showAll: boolean;
+  hasCelebrated: boolean;
 }
 
 type Action =
@@ -19,10 +20,15 @@ type Action =
   | { type: 'TOGGLE_HOLDING'; payload: string }
   | { type: 'SELECT_ALL' }
   | { type: 'DESELECT_ALL' }
+  | { type: 'SELECT_RECOMMENDED' }
   | { type: 'TOGGLE_SHOW_ALL' }
   | { type: 'SET_LOADING_GAINS'; payload: boolean }
   | { type: 'SET_LOADING_HOLDINGS'; payload: boolean }
-  | { type: 'SET_ERROR'; payload: string | null };
+  | { type: 'SET_ERROR'; payload: string | null }
+  | { type: 'SET_CELEBRATED'; payload: boolean }
+  | { type: 'RESTORE_SELECTIONS'; payload: string[] };
+
+const STORAGE_KEY = 'koinx_selected_holdings';
 
 const initialState: HarvestingState = {
   capitalGains: null,
@@ -32,14 +38,19 @@ const initialState: HarvestingState = {
   isLoadingHoldings: false,
   error: null,
   showAll: false,
+  hasCelebrated: false,
 };
 
 function harvestingReducer(state: HarvestingState, action: Action): HarvestingState {
+  let newState = state;
+
   switch (action.type) {
     case 'SET_CAPITAL_GAINS':
-      return { ...state, capitalGains: action.payload };
+      newState = { ...state, capitalGains: action.payload };
+      break;
     case 'SET_HOLDINGS':
-      return { ...state, holdings: action.payload };
+      newState = { ...state, holdings: action.payload };
+      break;
     case 'TOGGLE_HOLDING': {
       const newSelected = new Set(state.selectedIds);
       if (newSelected.has(action.payload)) {
@@ -47,25 +58,52 @@ function harvestingReducer(state: HarvestingState, action: Action): HarvestingSt
       } else {
         newSelected.add(action.payload);
       }
-      return { ...state, selectedIds: newSelected };
+      newState = { ...state, selectedIds: newSelected };
+      break;
     }
     case 'SELECT_ALL': {
       const allIds = state.holdings.map(h => `${h.coin}__${h.coinName}`);
-      return { ...state, selectedIds: new Set(allIds) };
+      newState = { ...state, selectedIds: new Set(allIds) };
+      break;
     }
     case 'DESELECT_ALL':
-      return { ...state, selectedIds: new Set() };
+      newState = { ...state, selectedIds: new Set() };
+      break;
+    case 'SELECT_RECOMMENDED': {
+      const recommendedIds = state.holdings
+        .filter(h => h.stcg.gain < 0 || h.ltcg.gain < 0)
+        .map(h => `${h.coin}__${h.coinName}`);
+      newState = { ...state, selectedIds: new Set(recommendedIds) };
+      break;
+    }
     case 'TOGGLE_SHOW_ALL':
-      return { ...state, showAll: !state.showAll };
+      newState = { ...state, showAll: !state.showAll };
+      break;
     case 'SET_LOADING_GAINS':
-      return { ...state, isLoadingGains: action.payload };
+      newState = { ...state, isLoadingGains: action.payload };
+      break;
     case 'SET_LOADING_HOLDINGS':
-      return { ...state, isLoadingHoldings: action.payload };
+      newState = { ...state, isLoadingHoldings: action.payload };
+      break;
     case 'SET_ERROR':
-      return { ...state, error: action.payload };
+      newState = { ...state, error: action.payload };
+      break;
+    case 'SET_CELEBRATED':
+      newState = { ...state, hasCelebrated: action.payload };
+      break;
+    case 'RESTORE_SELECTIONS':
+      newState = { ...state, selectedIds: new Set(action.payload) };
+      break;
     default:
       return state;
   }
+
+  // Persist selections
+  if (['TOGGLE_HOLDING', 'SELECT_ALL', 'DESELECT_ALL', 'SELECT_RECOMMENDED', 'RESTORE_SELECTIONS'].includes(action.type)) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(Array.from(newState.selectedIds)));
+  }
+
+  return newState;
 }
 
 interface HarvestingContextType extends HarvestingState {
@@ -76,6 +114,20 @@ export const HarvestingContext = createContext<HarvestingContextType | undefined
 
 export const HarvestingProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [state, dispatch] = useReducer(harvestingReducer, initialState);
+
+  React.useEffect(() => {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed)) {
+          dispatch({ type: 'RESTORE_SELECTIONS', payload: parsed });
+        }
+      } catch (e) {
+        console.error('Failed to restore selections', e);
+      }
+    }
+  }, []);
 
   const value = useMemo(() => ({ ...state, dispatch }), [state]);
 
