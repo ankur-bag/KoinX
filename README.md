@@ -1,4 +1,4 @@
-# KoinX Tax Loss Harvesting Tool
+# KoinX Tax Loss Harvesting Tool (Assessment project)
 
 A sophisticated, responsive React application built for crypto investors to simulate and optimize their tax liabilities through strategic tax-loss harvesting.
 
