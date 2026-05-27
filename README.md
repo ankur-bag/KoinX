@@ -84,7 +84,4 @@ src/
 
 Tax-loss harvesting regulations vary by country. This tool is a simulation and should not be considered financial or tax advice. Always consult with a qualified tax professional.
 
----
-
-Built with ❤️ for the **KoinX Frontend Challenge**.
 
