@@ -4,14 +4,14 @@ import React from 'react';
 import { useHarvesting } from '@/hooks/useHarvesting';
 import { PreHarvestingCard } from './PreHarvestingCard';
 import { AfterHarvestingCard } from './AfterHarvestingCard';
-import type { StcgLtcg, Holding } from '@/lib/types';
+import type { StcgLtcg } from '@/lib/types';
 
 export const CapitalGainsSection: React.FC = () => {
   const { capitalGains, holdings, selectedIds } = useHarvesting();
 
   if (!capitalGains) return null;
 
-  // Derived values — recompute on every render
+  // Derived values ï¿½ recompute on every render
   const afterHarvesting = (() => {
     let stcgProfits = capitalGains.stcg.profits;
     let stcgLosses = capitalGains.stcg.losses;

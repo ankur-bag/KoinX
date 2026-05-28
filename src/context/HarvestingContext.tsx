@@ -1,6 +1,7 @@
 "use client";
 
-import React, { createContext, useReducer, ReactNode, useMemo } from 'react';
+import React, { createContext, useReducer, useMemo } from 'react';
+import type { ReactNode } from 'react';
 import type { CapitalGainsResponse, Holding } from '@/lib/types';
 
 interface HarvestingState {
