@@ -28,7 +28,7 @@ export const ThemeToggle: React.FC = () => {
       <span className="sr-only">Toggle theme</span>
       
       {/* Subtle tooltip on hover */}
-      <span className="absolute -bottom-10 left-1/2 -translate-x-1/2 px-2 py-1 rounded bg-foreground text-background text-[10px] font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+      <span className="absolute -bottom-10 left-1/2 -translate-x-1/2 px-2 py-1 rounded bg-foreground text-background text-[10px] font-semibold uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
         {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
       </span>
     </button>

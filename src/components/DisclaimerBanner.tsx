@@ -17,7 +17,7 @@ export const DisclaimerBanner: React.FC = () => {
                         <div className="bg-[#0052FE] rounded-full p-1">
                             <Info className="w-3.5 h-3.5 text-white" />
                         </div>
-                        <span className="text-sm font-bold text-black dark:text-white tracking-tight">Important Notes & Disclaimers</span>
+                        <span className="text-sm font-semibold text-black dark:text-white tracking-tight">Important Notes & Disclaimers</span>
                     </div>
                     {isExpanded ? (
                         <ChevronUp className="w-5 h-5 text-black dark:text-white/60" />
@@ -36,7 +36,7 @@ export const DisclaimerBanner: React.FC = () => {
                                 "Some countries do not have a short-term / long-term bifurcation. For now, we are calculating everything as long-term.",
                                 "Only realized losses are considered for harvesting. Unrealized losses in held assets are not counted."
                             ].map((text, i) => (
-                                <li key={i} className="list-disc text-xs font-semibold text-black dark:text-white/80 leading-relaxed text-balance">
+                                <li key={i} className="list-disc text-xs font-medium text-black dark:text-white/80 leading-relaxed text-balance">
                                     {text}
                                 </li>
                             ))}

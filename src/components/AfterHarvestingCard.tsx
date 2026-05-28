@@ -45,17 +45,17 @@ export const AfterHarvestingCard: React.FC<AfterHarvestingCardProps> = ({
       
       <div className="flex justify-between items-start mb-8 relative z-10">
         <div className="flex flex-col">
-          <h3 className="text-white uppercase tracking-widest text-[11px] font-bold opacity-80">Result</h3>
-          <h3 className="text-2xl font-bold tracking-tight text-white mt-1">After Harvesting</h3>
+          <h3 className="text-white uppercase tracking-widest text-[11px] font-semibold opacity-80">Result</h3>
+          <h3 className="text-2xl font-semibold tracking-tight text-white mt-1">After Harvesting</h3>
         </div>
       </div>
       
       <div className="flex justify-end gap-12 sm:gap-16 mb-4 relative z-10">
         <div className="w-[100px] text-right">
-          <span className="text-[11px] font-bold text-white uppercase tracking-widest opacity-80">Short-term</span>
+          <span className="text-[11px] font-semibold text-white uppercase tracking-widest opacity-80">Short-term</span>
         </div>
         <div className="w-[100px] text-right">
-          <span className="text-[11px] font-bold text-white uppercase tracking-widest opacity-80">Long-term</span>
+          <span className="text-[11px] font-semibold text-white uppercase tracking-widest opacity-80">Long-term</span>
         </div>
       </div>
 
@@ -69,8 +69,8 @@ export const AfterHarvestingCard: React.FC<AfterHarvestingCardProps> = ({
 
       <div className="mt-10 pt-8 border-t border-white/20 flex flex-col gap-2 relative z-10">
         <div className="flex justify-between items-center">
-          <span className="text-base font-bold text-white">Effective Capital Gains:</span>
-          <span className="text-3xl font-bold tabular text-white ml-4">
+          <span className="text-base font-semibold text-white">Effective Capital Gains:</span>
+          <span className="text-3xl font-semibold tabular text-white ml-4">
             {formatINR(totalEffective)}
           </span>
         </div>
@@ -78,27 +78,27 @@ export const AfterHarvestingCard: React.FC<AfterHarvestingCardProps> = ({
         {savings > 0 && (
           <div className="relative group/tooltip flex items-center gap-2 mt-4 bg-white/15 py-3 px-5 rounded-xl w-fit cursor-help border border-white/10 shadow-lg active:scale-95 transition-all">
             <span className="text-lg">🔥</span>
-            <span className="text-sm font-bold text-white truncate">
-              You are going to save upto <span className="text-white font-black">{formatINR(savings)}</span>
+            <span className="text-sm font-semibold text-white truncate">
+              You are going to save upto <span className="text-white font-semibold">{formatINR(savings)}</span>
             </span>
 
             {/* Tooltip Breakdown */}
             <div className="absolute bottom-full left-0 mb-4 opacity-0 group-hover/tooltip:opacity-100 transition-all pointer-events-none z-50 translate-y-2 group-hover/tooltip:translate-y-0">
               <div className="bg-[#0A0A11] border border-white/10 p-5 rounded-2xl shadow-2xl min-w-[220px]">
-                <p className="text-[10px] font-bold text-white/40 uppercase tracking-widest mb-4 border-b border-white/5 pb-2">Savings Breakdown</p>
+                <p className="text-[10px] font-semibold text-white/40 uppercase tracking-widest mb-4 border-b border-white/5 pb-2">Savings Breakdown</p>
                 <div className="space-y-3">
                   <div className="flex justify-between gap-8">
                     <span className="text-xs text-white/70 font-semibold">STCG Offset</span>
-                    <span className="text-xs font-bold text-green-400">{formatINR(stcgSavings)}</span>
+                    <span className="text-xs font-semibold text-green-400">{formatINR(stcgSavings)}</span>
                   </div>
                   <div className="flex justify-between gap-8">
                     <span className="text-xs text-white/70 font-semibold">LTCG Offset</span>
-                    <span className="text-xs font-bold text-green-400">{formatINR(ltcgSavings)}</span>
+                    <span className="text-xs font-semibold text-green-400">{formatINR(ltcgSavings)}</span>
                   </div>
                 </div>
                 <div className="mt-4 pt-3 border-t border-white/10 flex justify-between gap-8">
-                  <span className="text-xs font-bold text-white">Total Savings</span>
-                  <span className="text-xs font-extrabold text-white">{formatINR(savings)}</span>
+                  <span className="text-xs font-semibold text-white">Total Savings</span>
+                  <span className="text-xs font-semibold text-white">{formatINR(savings)}</span>
                 </div>
               </div>
               <div className="w-3 h-3 bg-[#0A0A11] border-r border-b border-white/10 rotate-45 ml-6 -mt-1.5" />

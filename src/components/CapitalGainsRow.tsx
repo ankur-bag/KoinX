@@ -32,12 +32,12 @@ export const CapitalGainsRow: React.FC<CapitalGainsRowProps> = ({
       <span className={`text-sm tracking-tight ${textColor} ${labelOpacity} font-semibold`}>{label}</span>
       <div className="flex gap-12 sm:gap-16">
         <div className="w-[100px] text-right">
-          <span className={`text-sm tabular font-bold ${negative && shortTerm !== 0 ? 'text-[#E11D48] dark:text-red-400' : textColor}`}>
+          <span className={`text-sm tabular font-semibold ${negative && shortTerm !== 0 ? 'text-[#E11D48] dark:text-red-400' : textColor}`}>
             {formatValue(shortTerm)}
           </span>
         </div>
         <div className="w-[100px] text-right">
-          <span className={`text-sm tabular font-bold ${negative && longTerm !== 0 ? 'text-[#E11D48] dark:text-red-400' : textColor}`}>
+          <span className={`text-sm tabular font-semibold ${negative && longTerm !== 0 ? 'text-[#E11D48] dark:text-red-400' : textColor}`}>
             {formatValue(longTerm)}
           </span>
         </div>

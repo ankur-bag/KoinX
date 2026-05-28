@@ -45,7 +45,7 @@ const MainContent: React.FC = () => {
     return (
       <main className="min-h-screen bg-background pt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-           <h1 className="text-3xl font-bold tracking-tight text-black dark:text-white">Tax Harvesting</h1>
+           <h1 className="text-3xl font-semibold tracking-tight text-black dark:text-white">Tax Harvesting</h1>
         </div>
         <SkeletonLoader />
       </main>
@@ -56,8 +56,8 @@ const MainContent: React.FC = () => {
     <main className="min-h-screen pb-20 bg-background transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10">
         <div className="flex items-baseline gap-3">
-          <h1 className="text-3xl font-bold tracking-tight text-black dark:text-white">Tax Harvesting</h1>
-          <a href="#" className="text-sm font-bold text-black dark:text-white hover:opacity-80 transition-all underline underline-offset-4 decoration-black/30 dark:decoration-white/30">How it works?</a>
+          <h1 className="text-3xl font-semibold tracking-tight text-black dark:text-white">Tax Harvesting</h1>
+          <a href="#" className="text-sm font-semibold text-black dark:text-white hover:opacity-80 transition-all underline underline-offset-4 decoration-black/30 dark:decoration-white/30">How it works?</a>
         </div>
       </div>
 

@@ -167,20 +167,20 @@ export const HoldingsTable: React.FC = () => {
                     ariaLabel="Select all holdings"
                   />
                 </th>
-                <th className="py-5 px-4 text-xs font-bold text-black dark:text-white/40 uppercase tracking-widest select-none border-b border-card-border">
+                <th className="py-5 px-4 text-xs font-semibold text-black dark:text-white/40 uppercase tracking-widest select-none border-b border-card-border">
                   Asset
                 </th>
-                <th className="py-5 px-4 text-xs font-bold text-black dark:text-white/40 uppercase tracking-widest hidden md:table-cell select-none border-b border-card-border">
+                <th className="py-5 px-4 text-xs font-semibold text-black dark:text-white/40 uppercase tracking-widest hidden md:table-cell select-none border-b border-card-border">
                   <div className="flex flex-col">
                     <span>Holdings</span>
                     <span className="text-[9px] lowercase font-semibold opacity-60">Current Market Rate</span>
                   </div>
                 </th>
-                <th className="py-5 px-4 text-xs font-bold text-black dark:text-white/40 uppercase tracking-widest hidden lg:table-cell select-none border-b border-card-border text-center">
+                <th className="py-5 px-4 text-xs font-semibold text-black dark:text-white/40 uppercase tracking-widest hidden lg:table-cell select-none border-b border-card-border text-center">
                   Total Current Value
                 </th>
                 <th
-                  className="py-5 px-4 text-xs font-bold text-black dark:text-white/40 uppercase tracking-widest cursor-pointer select-none hover:text-[#0052FE] dark:hover:text-white transition-colors group border-b border-card-border"
+                  className="py-5 px-4 text-xs font-semibold text-black dark:text-white/40 uppercase tracking-widest cursor-pointer select-none hover:text-[#0052FE] dark:hover:text-white transition-colors group border-b border-card-border"
                   onClick={() => handleSort("stcg")}
                 >
                   <div className="flex items-center gap-2">
@@ -188,14 +188,14 @@ export const HoldingsTable: React.FC = () => {
                   </div>
                 </th>
                 <th
-                  className="py-5 px-4 text-xs font-bold text-black dark:text-white/40 uppercase tracking-widest cursor-pointer select-none hover:text-[#0052FE] dark:hover:text-white transition-colors group border-b border-card-border"
+                  className="py-5 px-4 text-xs font-semibold text-black dark:text-white/40 uppercase tracking-widest cursor-pointer select-none hover:text-[#0052FE] dark:hover:text-white transition-colors group border-b border-card-border"
                   onClick={() => handleSort("ltcg")}
                 >
                   <div className="flex items-center gap-2">
                     Long-term {getSortIcon("ltcg")}
                   </div>
                 </th>
-                <th className="py-5 px-4 pr-8 text-right text-xs font-bold text-black dark:text-white/40 uppercase tracking-widest select-none border-b border-card-border">
+                <th className="py-5 px-4 pr-8 text-right text-xs font-semibold text-black dark:text-white/40 uppercase tracking-widest select-none border-b border-card-border">
                   Amount to Sell
                 </th>
               </tr>
@@ -318,10 +318,10 @@ export const HoldingsTable: React.FC = () => {
         <div className="w-full flex flex-col items-center gap-3 py-6 border-t border-card-border">
           <div className="flex items-center gap-2 px-4 py-1.5 bg-[#F8FAFC] dark:bg-white/[0.03] rounded-full border border-card-border shadow-sm">
              <Keyboard className="w-4 h-4 text-blue-500" />
-             <span className="text-[10px] font-semibold text-black dark:text-white uppercase tracking-widest">Keyboard Navigation</span>
+            <span className="text-[10px] font-medium text-black dark:text-white uppercase tracking-widest">Keyboard Navigation</span>
           </div>
-          <p className="text-xs font-semibold text-black dark:text-white tracking-tight text-center max-w-lg leading-relaxed">
-            Full support for <span className="text-[#0052FE] font-bold">Arrow keys</span> to navigate, <span className="text-[#0052FE] font-bold">Space</span> to toggle, and <span className="text-[#0052FE] font-bold">Shift+Click</span> for range selection is still active.
+          <p className="text-xs font-medium text-black dark:text-white tracking-tight text-center max-w-lg leading-relaxed">
+            Full support for <span className="text-[#0052FE] font-semibold">Arrow keys</span> to navigate, <span className="text-[#0052FE] font-semibold">Space</span> to toggle, and <span className="text-[#0052FE] font-semibold">Shift+Click</span> for range selection is still active.
           </p>
         </div>
       </div>
