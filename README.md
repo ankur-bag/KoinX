@@ -6,7 +6,7 @@ A sophisticated, responsive React application built for crypto investors to simu
 
 ## 🚀 Overview
 
-The **Tax Loss Harvesting (TLH)** tool helps users identify underperforming assets in their portfolio that, if sold, can offset realized capital gains. This project focuses on an impeccable user interface, real-time calculations, and a seamless data-driven experience.
+The **Tax Loss Harvesting (TLH)** tool helps users identify underperforming assets in their portfolio that, if sold, can offset realized capital gains. This project focuses on an impeccable user interface, real-time calculations, and a seamless data-driven experience across both light and dark themes.
 
 ## ✨ Key Features
 
@@ -16,20 +16,20 @@ The **Tax Loss Harvesting (TLH)** tool helps users identify underperforming asse
   - Interactive sorting for Short-term and Long-term gains (Descending → Ascending → Reset).
   - Collapsible data view ("View All" toggle).
 - **Impeccable UI/UX**:
-  - **Dark Mode First**: Optimized with a premium `#0A0A11` and `#171823` palette.
-  - **Typography**: Replaced bold fonts with **Google Sans Medium** for a sleek, high-end financial aesthetic.
-  - **Precision Alignment**: All financial data is aligned using fixed-width containers and tabular figures.
+   - **Theme System**: Supports both light and dark mode with `data-theme` driven styling and synchronized Tailwind `dark:` variants.
+   - **Typography**: Uses **Google Sans** / **Google Sans Flex** with medium-first weights for cleaner readability.
+   - **Precision Alignment**: All financial data is aligned using fixed-width containers and tabular figures.
 - **Adaptive Design**: Fully responsive across mobile, tablet, and desktop viewports.
 - **Collapsible Disclaimers**: Integrated accordion for important regulatory notes and disclaimers.
 
 ## 🛠️ Tech Stack
 
 - **Framework**: [React 19](https://react.dev/)
-- **Build Tool**: [Vite 6](https://vite.dev/)
+- **Build Tool**: [Vite 8](https://vite.dev/)
 - **Styling**: [Tailwind CSS 4](https://tailwindcss.com/) (using OKLCH colors & CSS-first configuration)
 - **Language**: [TypeScript](https://www.typescriptlang.org/)
 - **Icons**: [Lucide React](https://lucide.dev/)
-- **Animation**: `tailwindcss-animate` & CSS Transitions
+- **Animation**: CSS transitions and utility-based motion styles
 
 ## 📦 Getting Started
 
@@ -78,7 +78,17 @@ src/
 
 - **State Management**: Uses React `useReducer` and `useContext` for robust, predictable state transitions.
 - **Performance**: High-performance rendering with `useMemo` for derived tax calculations and sorting operations.
+- **Theming**: `ThemeProvider` sets `data-theme` on the root document element, and global tokens in `src/index.css` control surface/background/text colors.
 - **Typography Philosophy**: Prioritizes medium and light weights to maintain a distinctive, non-generic bold experience.
+
+## ✅ Recent Updates
+
+- Fixed light theme text visibility by wiring Tailwind `dark:` utilities to `[data-theme='dark']` via a custom variant.
+- Updated global font stack to Google Sans and reduced heavy font weights across the UI.
+- Resolved TypeScript build blockers:
+   - Removed unused `Holding` type import in `src/components/CapitalGainsSection.tsx`.
+   - Converted `ReactNode` to a type-only import in `src/context/HarvestingContext.tsx`.
+- Verified production build with `npm run build`.
 
 ## ⚖️ Disclaimer
 
